@@ -1,0 +1,96 @@
+{/* {timer ? (<Text style={{ color: "black", fontSize: 20, alignSelf: "center" }}>
+          Temperature : {(data.main.temp - 273).toString().slice(0, 2)}&deg; celcius
+        </Text>) : (null)} */}
+{/* 
+        {timer2 ? (<Text style={{ color: "black", fontSize: 20, alignSelf: "center" }}>
+          Humidity: {(data.main.humidity)}
+        </Text>) : (null)} */}
+{/* <FlatList data={}/> */ }
+data.weather[0].main
+
+
+import { View, Text } from 'react-native'
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import Nav from './src/Nav'
+import { Provider } from 'react-redux'
+import store from './src/Store'
+const App = () => {
+  return (
+    <Provider store= { store } >
+    <NavigationContainer>
+    <Nav />
+    < /NavigationContainer>
+    < /Provider>
+
+  )
+}
+
+export default App
+
+
+import { View, Text } from 'react-native'
+import Geolocation from '@react-native-community/geolocation';
+import React from 'react'
+const foreCast = () => {
+  const data = () => {
+    Geolocation.getCurrentPosition(info => console.log(info))
+  }
+  return (
+    <View>
+    <Text>foreCast < /Text>
+    < /View>
+  )
+}
+
+export default foreCast
+
+const { name, item } = props.route.params
+useEffect(() => {
+  fetchdata();
+  if (data) {
+    fetchdata1()
+  }
+}, [])
+const fetchdata = async () => {
+  try {
+    let resp = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${name},${item}&appid=${api_key}`)
+    console.log("first_Resp", resp.data)
+    if (resp.data !== null) {
+      setData(resp.data)
+      setIndicator(false)
+    }
+  } catch (error) {
+    navigation.navigate('Home')
+    Alert.alert(` "${name}" does not exist`)
+  }
+}
+const { lat, lon } = data?.coord || {}
+const fetchdata1 = async () => {
+  console.log(lat, lon)
+  try {
+    const resposne = await axios.get(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${"daily"}&appid=${api_key}`)
+    console.log(resposne.data)
+  } catch (error) {
+    console.log("error to fetch")
+  }
+}
+
+
+
+import { View, Text } from 'react-native'
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import Nav from './src/Nav'
+import { Provider } from 'react-redux'
+import store from './src/Store'
+const App = () => {
+  return (
+    <Provider store={store} >
+      <NavigationContainer>
+        <Nav />
+      </NavigationContainer>
+    </Provider>
+  )
+}
+export default App
