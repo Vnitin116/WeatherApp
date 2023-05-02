@@ -4,13 +4,11 @@ import { deviceHieght, deviceWidth } from './dimensions'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useDispatch, useSelector } from "react-redux";
 import { addRecentSearch } from './recentSearchesSlice';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { requestUserPermission, GetFCMToken, notificationListener } from './Pushnotification.js'
 const Home = ({ navigation }) => {
     let arr = [];
     let arr2 = [];
-    useEffect(() => {
-        getData()
-    }, [])
+
     const [] = useState('')
     const dispatch = useDispatch();
     // Redux selector with filtered data
@@ -20,15 +18,7 @@ const Home = ({ navigation }) => {
     // useState hooks
     const [city, setCity] = useState('')
     const [indicator, setIndicator] = useState(false)
-    // async storage
-    const storeData = async () => {
-        await AsyncStorage.setItem('city', JSON.stringify(filteredData));
-    }
-    // async Storage
-    const getData = async () => {
-        let a = await AsyncStorage.getItem("city")
-        arr2.push(a)
-    }
+
     const nav = () => {
         if (city !== "") {
             setIndicator(false)
@@ -39,6 +29,13 @@ const Home = ({ navigation }) => {
             alert('fill your city name')
         }
     }
+    useEffect(() => {
+        if (requestUserPermission) {
+
+            console.log("##############3==>", GetFCMToken())
+                , notificationListener()
+        }
+    }, [])
     return (
         <View>
             <ImageBackground source={{ uri: "https://img.freepik.com/free-vector/dark-clouds-with-rainfall-thunder-flash-background_1017-32181.jpg?w=1060&t=st=1682400634~exp=1682401234~hmac=09ad9705de823f6f82d4d66d6433ee45fce6d29cc32b092b0f0d97e731ab0e41" }}
@@ -58,12 +55,12 @@ const Home = ({ navigation }) => {
                                 <TouchableOpacity onPress={() => {
                                     setIndicator(true),
                                         arr.push(city),
-                                        storeData(),
                                         setTimeout(() => { nav() }, 2000)
                                 }}>
                                     <Icon name='search' size={25} color="black" style={{ marginRight: 5 }} />
                                 </TouchableOpacity>
                             </View>
+
                         </TouchableOpacity>
                         {indicator ? (<ActivityIndicator style={{ alignSelf: "center" }} size={'large'} />) : (null)}
                     </View>

@@ -1,4 +1,3 @@
-
 import { View, Text } from 'react-native'
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
@@ -9,9 +8,9 @@ const App = () => {
   return (
     <Provider store={store} >
       <NavigationContainer>
-        <Nav />
+        <Nav/>
       </NavigationContainer>
     </Provider>
   )
 }
-export default App
+export default App;

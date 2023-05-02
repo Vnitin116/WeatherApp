@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "810220721145",
+    "project_id": "weathera-12af7",
+    "storage_bucket": "weathera-12af7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810220721145:android:f3c220b3e1d09f6671e328",
+        "android_client_info": {
+          "package_name": "com.whether_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "810220721145-h2bn0a6gle0b1loh3ts3jbs3brtmn5qi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.whether_app",
+            "certificate_hash": "b8cca3c31b52d082245b1aa920ad0ad8b7f7dc22"
+          }
+        },
+        {
+          "client_id": "810220721145-t48qoso9t6uqrqg4dc2biq6pu4vp8hps.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwdUvQsqMfXC9lXSSDVfMBR4-SmfggSHg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "810220721145-t48qoso9t6uqrqg4dc2biq6pu4vp8hps.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
