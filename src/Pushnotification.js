@@ -8,11 +8,11 @@ export async function requestUserPermission() {
     const enabled =
         authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
         authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-
     if (enabled) {
         console.log('Authorization status:', authStatus);
     }
-} export async function GetFCMToken() {
+}
+export async function GetFCMToken() {
     let fmctoken = await AsyncStorage.getItem('fcmtoken');
     if (!fmctoken) {
         try {
@@ -39,8 +39,7 @@ export const notificationListener = () => {
             remoteMessage.notification,
         );
     });
-    messaging()
-        .getInitialNotification()
+    messaging().getInitialNotification()
         .then(remoteMessage => {
             if (remoteMessage) {
                 console.log(
@@ -49,8 +48,7 @@ export const notificationListener = () => {
                 );
             }
         });
-
     messaging().onMessage(async remoteMessage => {
-        console.log('remote message')
+        console.log('remote', remoteMessage)
     })
 }
