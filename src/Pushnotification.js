@@ -1,5 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import messaging from '@react-native-firebase/messaging';
+import { PermissionsAndroid } from 'react-native';
+PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
 
 export async function requestUserPermission() {
     const authStatus = await messaging().requestPermission();
@@ -47,6 +49,7 @@ export const notificationListener = () => {
                 );
             }
         });
+
     messaging().onMessage(async remoteMessage => {
         console.log('remote message')
     })

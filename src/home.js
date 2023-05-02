@@ -33,7 +33,7 @@ const Home = ({ navigation }) => {
         if (requestUserPermission) {
 
             console.log("##############3==>", GetFCMToken())
-                , notificationListener()
+            notificationListener()
         }
     }, [])
     return (
